@@ -13,6 +13,7 @@ export const EMAIL_CONFIG = {
 
   // WhatsApp
   WHATSAPP_NUMBER: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '+923435176201',
+
 }
 
 export interface ContactFormData {

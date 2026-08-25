@@ -96,6 +96,8 @@ export function Contact() {
       label: 'Phone',
       value: '+923435176201',
       href: 'tel:+923435176201',
+      value: '+923194585840',
+      href: 'tel:+923194585840',
     },
     {
       icon: MessageCircle,
@@ -107,6 +109,7 @@ export function Contact() {
   ]
 
   return (
+<<<<<<< HEAD
     <section id="contact" className="pt-4 sm:pt-6 lg:pt-8 pb-16 sm:pb-20 lg:pb-28 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">      <motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -121,6 +124,22 @@ export function Contact() {
         Ready to start your next project? Reach out and let&apos;s create something amazing.
       </p>
     </motion.div>
+=======
+<section id="contact" className="pt-4 sm:pt-6 lg:pt-8 pb-16 sm:pb-20 lg:pb-28 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        viewport={{ once: true }}
+        className="text-center mb-12 sm:mb-16"
+      >
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-3 sm:mb-4 text-balance tracking-tight">
+          Let&apos;s Work Together
+        </h2>
+        <p className="text-base sm:text-lg text-foreground/70 max-w-2xl mx-auto text-pretty leading-relaxed">
+          Ready to start your next project? Reach out and let&apos;s create something amazing.
+        </p>
+      </motion.div>
+>>>>>>> origin/main
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8">
         {/* Contact Methods */}
@@ -246,10 +265,18 @@ export function Contact() {
                 className={`${inputClasses} appearance-none cursor-pointer`}
               >
                 <option value="">Select Budget Range</option>
+<<<<<<< HEAD
                 <option value="under-50k">Under PKR 50,000</option>
                 <option value="50k-100k">PKR 50,000 - 100,000</option>
                 <option value="100k-200k">PKR 100,000 - 200,000</option>
                 <option value="above-200k">PKR 200,000+</option>              </select>
+=======
+                <option value="under-3k">Under $3,000</option>
+                <option value="3k-8k">$3,000 - $8,000</option>
+                <option value="8k-15k">$8,000 - $15,000</option>
+                <option value="above-15k">$15,000+</option>
+              </select>
+>>>>>>> origin/main
             </div>
           </motion.div>
 

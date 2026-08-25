@@ -31,8 +31,9 @@ export const pricingPlans: PricingPlan[] = [
   {
     id: 'professional',
     name: 'Professional',
+
     description: 'Ideal for growing businesses that need a professional website with additional pages, features, and integrations.',
-    price: 'PKR 60,000+',
+description: 'Ideal for growing businesses that need a professional website with additional pages, features, and integrations.',    price: 'PKR 60,000+',
     period: 'project',
     highlighted: true,
     features: [
@@ -64,10 +65,14 @@ export const pricingPlans: PricingPlan[] = [
     icon: '👑',
   },
   {
+    
     id: 'maintenance',
     name: 'Maintenance',
     description: 'Keep your website secure, updated, and running smoothly.',
+
     price: 'PKR 8,000',
+    price: 'PKR 10,000',
+
     period: 'month',
     features: [
       'Bug fixes & troubleshooting',

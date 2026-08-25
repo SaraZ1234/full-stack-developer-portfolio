@@ -2,7 +2,15 @@
 
 import { useId, useState } from 'react'
 import { motion } from 'framer-motion'
-import { Mail, Phone, MessageCircle, Send, Loader2, CheckCircle2, AlertCircle } from 'lucide-react'
+import {
+  Mail,
+  Phone,
+  MessageCircle,
+  Send,
+  Loader2,
+  CheckCircle2,
+  AlertCircle,
+} from 'lucide-react'
 import { sendContactEmail, getWhatsAppLink } from '@/lib/email'
 
 interface FormData {
@@ -44,24 +52,39 @@ export function Contact() {
   const messageId = useId()
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
   ) => {
     const { name, value } = e.target
-    setFormData((prev) => ({ ...prev, [name]: value }))
+
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }))
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+
     setLoading(true)
     setError(null)
 
     try {
       await sendContactEmail(formData)
+
       setSubmitted(true)
       setFormData(initialFormData)
-      setTimeout(() => setSubmitted(false), 5000)
+
+      setTimeout(() => {
+        setSubmitted(false)
+      }, 5000)
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to send message. Please try again.')
+      setError(
+        err instanceof Error
+          ? err.message
+          : 'Failed to send message. Please try again.'
+      )
     } finally {
       setLoading(false)
     }
@@ -71,16 +94,23 @@ export function Contact() {
     hidden: { opacity: 0 },
     show: {
       opacity: 1,
-      transition: { staggerChildren: 0.1 },
+      transition: {
+        staggerChildren: 0.1,
+      },
     },
   }
 
   const item = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: {
+      opacity: 0,
+      y: 20,
+    },
     show: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.5 },
+      transition: {
+        duration: 0.5,
+      },
     },
   }
 
@@ -96,36 +126,25 @@ export function Contact() {
       label: 'Phone',
       value: '+923435176201',
       href: 'tel:+923435176201',
-      value: '+923194585840',
-      href: 'tel:+923194585840',
     },
     {
       icon: MessageCircle,
       label: 'WhatsApp',
       value: 'Message on WhatsApp',
-      href: getWhatsAppLink("Hi! I'm interested in your services."),
+      href: getWhatsAppLink(
+        "Hi! I'm interested in your services."
+      ),
       external: true,
     },
   ]
 
   return (
-<<<<<<< HEAD
-    <section id="contact" className="pt-4 sm:pt-6 lg:pt-8 pb-16 sm:pb-20 lg:pb-28 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">      <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6 }}
-      viewport={{ once: true }}
-      className="text-center mb-12 sm:mb-16"
+    <section
+      id="contact"
+      className="pt-4 sm:pt-6 lg:pt-8 pb-16 sm:pb-20 lg:pb-28 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto"
     >
-      <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-3 sm:mb-4 text-balance tracking-tight">
-        Let&apos;s Work Together
-      </h2>
-      <p className="text-base sm:text-lg text-foreground/70 max-w-2xl mx-auto text-pretty leading-relaxed">
-        Ready to start your next project? Reach out and let&apos;s create something amazing.
-      </p>
-    </motion.div>
-=======
-<section id="contact" className="pt-4 sm:pt-6 lg:pt-8 pb-16 sm:pb-20 lg:pb-28 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">      <motion.div
+      {/* Section Heading */}
+      <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
@@ -135,12 +154,14 @@ export function Contact() {
         <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-3 sm:mb-4 text-balance tracking-tight">
           Let&apos;s Work Together
         </h2>
+
         <p className="text-base sm:text-lg text-foreground/70 max-w-2xl mx-auto text-pretty leading-relaxed">
-          Ready to start your next project? Reach out and let&apos;s create something amazing.
+          Ready to start your next project? Reach out and let&apos;s create
+          something amazing.
         </p>
       </motion.div>
->>>>>>> origin/main
 
+      {/* Main Content */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8">
         {/* Contact Methods */}
         <motion.div
@@ -150,41 +171,65 @@ export function Contact() {
           viewport={{ once: true }}
           className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-1 gap-4"
         >
-          {contactMethods.map(({ icon: Icon, label, value, href, external }) => (
-            <motion.div
-              key={label}
-              variants={item}
-              className="glass-light p-5 sm:p-6 rounded-lg h-full"
-            >
-              <div className="flex items-start gap-4">
-                <div className="shrink-0 p-3 bg-primary/20 rounded-lg">
-                  <Icon size={22} className="text-primary" aria-hidden="true" />
+          {contactMethods.map(
+            ({ icon: Icon, label, value, href, external }) => (
+              <motion.div
+                key={label}
+                variants={item}
+                className="glass-light p-5 sm:p-6 rounded-lg h-full"
+              >
+                <div className="flex items-start gap-4">
+                  <div className="shrink-0 p-3 bg-primary/20 rounded-lg">
+                    <Icon
+                      size={22}
+                      className="text-primary"
+                      aria-hidden="true"
+                    />
+                  </div>
+
+                  <div className="min-w-0">
+                    <h3 className="font-semibold text-foreground mb-1">
+                      {label}
+                    </h3>
+
+                    <a
+                      href={href}
+                      target={external ? '_blank' : undefined}
+                      rel={
+                        external
+                          ? 'noopener noreferrer'
+                          : undefined
+                      }
+                      className="text-sm sm:text-base text-foreground/70 hover:text-primary transition-colors break-words focus-visible:outline-none focus-visible:underline"
+                    >
+                      {value}
+                    </a>
+                  </div>
                 </div>
-                <div className="min-w-0">
-                  <h3 className="font-semibold text-foreground mb-1">{label}</h3>
+              </motion.div>
+            )
+          )}
 
-                  <a
-                    href={href}
-                    target={external ? '_blank' : undefined}
-                    rel={external ? 'noopener noreferrer' : undefined}
-                    className="text-sm sm:text-base text-foreground/70 hover:text-primary transition-colors break-words focus-visible:outline-none focus-visible:underline"
-                  >
-                    {value}
-                  </a>
-                </div>              </div>
-            </motion.div>
-          ))}
+          {/* Response Time */}
+          <motion.div
+            variants={item}
+            className="glass-light p-5 sm:p-6 rounded-lg sm:col-span-3 lg:col-span-1"
+          >
+            <h3 className="font-semibold text-foreground mb-3">
+              Response Time
+            </h3>
 
-          <motion.div variants={item} className="glass-light p-5 sm:p-6 rounded-lg sm:col-span-3 lg:col-span-1">
-            <h3 className="font-semibold text-foreground mb-3">Response Time</h3>
             <ul className="space-y-2 text-sm text-foreground/70">
               <li className="flex items-center gap-2">
                 <span aria-hidden="true">⚡</span>
                 <span>Within 24 hours for all inquiries</span>
               </li>
+
               <li className="flex items-center gap-2">
                 <span aria-hidden="true">📞</span>
-                <span>Priority response for consultation requests</span>
+                <span>
+                  Priority response for consultation requests
+                </span>
               </li>
             </ul>
           </motion.div>
@@ -200,11 +245,19 @@ export function Contact() {
           noValidate
           className="lg:col-span-2 glass-light p-6 sm:p-8 rounded-lg"
         >
-          <motion.div variants={item} className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+          {/* Name + Email */}
+          <motion.div
+            variants={item}
+            className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4"
+          >
             <div>
-              <label htmlFor={nameId} className={labelClasses}>
+              <label
+                htmlFor={nameId}
+                className={labelClasses}
+              >
                 Your name
               </label>
+
               <input
                 id={nameId}
                 type="text"
@@ -217,10 +270,15 @@ export function Contact() {
                 className={inputClasses}
               />
             </div>
+
             <div>
-              <label htmlFor={emailId} className={labelClasses}>
+              <label
+                htmlFor={emailId}
+                className={labelClasses}
+              >
                 Your email
               </label>
+
               <input
                 id={emailId}
                 type="email"
@@ -236,11 +294,19 @@ export function Contact() {
             </div>
           </motion.div>
 
-          <motion.div variants={item} className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+          {/* Phone + Budget */}
+          <motion.div
+            variants={item}
+            className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4"
+          >
             <div>
-              <label htmlFor={phoneId} className={labelClasses}>
+              <label
+                htmlFor={phoneId}
+                className={labelClasses}
+              >
                 Phone number
               </label>
+
               <input
                 id={phoneId}
                 type="tel"
@@ -253,10 +319,15 @@ export function Contact() {
                 className={inputClasses}
               />
             </div>
+
             <div>
-              <label htmlFor={budgetId} className={labelClasses}>
+              <label
+                htmlFor={budgetId}
+                className={labelClasses}
+              >
                 Budget range
               </label>
+
               <select
                 id={budgetId}
                 name="budget"
@@ -265,25 +336,54 @@ export function Contact() {
                 className={`${inputClasses} appearance-none cursor-pointer`}
               >
                 <option value="">Select Budget Range</option>
-<<<<<<< HEAD
-                <option value="under-50k">Under PKR 50,000</option>
-                <option value="50k-100k">PKR 50,000 - 100,000</option>
-                <option value="100k-200k">PKR 100,000 - 200,000</option>
-                <option value="above-200k">PKR 200,000+</option>              </select>
-=======
-                <option value="under-3k">Under $3,000</option>
-                <option value="3k-8k">$3,000 - $8,000</option>
-                <option value="8k-15k">$8,000 - $15,000</option>
-                <option value="above-15k">$15,000+</option>
+
+                <option value="under-50k">
+                  Under PKR 50,000
+                </option>
+
+                <option value="50k-100k">
+                  PKR 50,000 - 100,000
+                </option>
+
+                <option value="100k-200k">
+                  PKR 100,000 - 200,000
+                </option>
+
+                <option value="above-200k">
+                  PKR 200,000+
+                </option>
+
+                <option value="under-3k">
+                  Under $3,000
+                </option>
+
+                <option value="3k-8k">
+                  $3,000 - $8,000
+                </option>
+
+                <option value="8k-15k">
+                  $8,000 - $15,000
+                </option>
+
+                <option value="above-15k">
+                  $15,000+
+                </option>
               </select>
->>>>>>> origin/main
             </div>
           </motion.div>
 
-          <motion.div variants={item} className="mb-4">
-            <label htmlFor={subjectId} className={labelClasses}>
+          {/* Subject */}
+          <motion.div
+            variants={item}
+            className="mb-4"
+          >
+            <label
+              htmlFor={subjectId}
+              className={labelClasses}
+            >
               Project subject
             </label>
+
             <input
               id={subjectId}
               type="text"
@@ -296,10 +396,18 @@ export function Contact() {
             />
           </motion.div>
 
-          <motion.div variants={item} className="mb-4">
-            <label htmlFor={messageId} className={labelClasses}>
+          {/* Message */}
+          <motion.div
+            variants={item}
+            className="mb-4"
+          >
+            <label
+              htmlFor={messageId}
+              className={labelClasses}
+            >
               Project details
             </label>
+
             <textarea
               id={messageId}
               name="message"
@@ -312,6 +420,7 @@ export function Contact() {
             />
           </motion.div>
 
+          {/* Error */}
           {error && (
             <motion.div
               initial={{ opacity: 0, y: -8 }}
@@ -320,11 +429,17 @@ export function Contact() {
               aria-live="assertive"
               className="mb-4 p-3 flex items-start gap-2 bg-destructive/10 border border-destructive/30 text-destructive rounded-lg text-sm"
             >
-              <AlertCircle size={18} className="shrink-0 mt-0.5" aria-hidden="true" />
+              <AlertCircle
+                size={18}
+                className="shrink-0 mt-0.5"
+                aria-hidden="true"
+              />
+
               <span>{error}</span>
             </motion.div>
           )}
 
+          {/* Success */}
           {submitted && (
             <motion.div
               initial={{ opacity: 0, y: -8 }}
@@ -333,11 +448,20 @@ export function Contact() {
               aria-live="polite"
               className="mb-4 p-3 flex items-start gap-2 bg-primary/10 border border-primary/30 text-primary rounded-lg text-sm"
             >
-              <CheckCircle2 size={18} className="shrink-0 mt-0.5" aria-hidden="true" />
-              <span>Message sent successfully! I&apos;ll get back to you within 24 hours.</span>
+              <CheckCircle2
+                size={18}
+                className="shrink-0 mt-0.5"
+                aria-hidden="true"
+              />
+
+              <span>
+                Message sent successfully! I&apos;ll get back to
+                you within 24 hours.
+              </span>
             </motion.div>
           )}
 
+          {/* Submit Button */}
           <motion.button
             variants={item}
             type="submit"
@@ -350,17 +474,27 @@ export function Contact() {
           >
             {loading ? (
               <>
-                <Loader2 size={20} className="animate-spin" aria-hidden="true" />
+                <Loader2
+                  size={20}
+                  className="animate-spin"
+                  aria-hidden="true"
+                />
+
                 <span>Sending...</span>
               </>
             ) : (
               <>
-                <Send size={20} aria-hidden="true" />
+                <Send
+                  size={20}
+                  aria-hidden="true"
+                />
+
                 <span>Send Message</span>
               </>
             )}
           </motion.button>
 
+          {/* Privacy Notice */}
           <p className="text-xs text-foreground/60 mt-4 text-center leading-relaxed">
             By submitting this form, you agree to our privacy policy
           </p>
